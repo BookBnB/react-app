@@ -3,5 +3,5 @@
 ```
 cd bookbnb-backoffice
 
-npm start
+docker-compose up -d --build
 ```
