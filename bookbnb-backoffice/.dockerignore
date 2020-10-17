@@ -1,0 +1,4 @@
+../node_modules
+.dockerignore
+bookbnb-backoffice/Dockerfile
+Dockerfile.prod
