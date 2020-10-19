@@ -1,31 +1,20 @@
-sudo: required
+dist: xenial
+os: linux
 language: node_js
 node_js:
-- "14"
+- '14'
+
 services:
 - docker
-before_install:
-# install heroku CLI
-- wget -qO- https://toolbelt.heroku.com/install.sh | sh
-# login to docker registries (dockerhub + heroku)
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-- echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
-install:
-# install deps
-- yarn install
+
 script:
-- npm run test
-- npm run build
-# build docker images
-- npm run docker
-- docker tag bookbnb-react registry.heroku.com/$HEROKU_APP_NAME/web
+- npm run test:coverage
+- codecov -f coverage/*.json
+
 deploy:
   provider: script
-  script:
-    # push to dockerhub
-    bash docker/heroku_push.sh
-    docker push registry.heroku.com/$HEROKU_APP_NAME/web;
-    heroku container:release web --app $HEROKU_APP_NAME
+  script: bash docker/heroku_push.sh
+  cleanup: true
   on:
     all_branches: true
     condition: $TRAVIS_BRANCH = master || $TRAVIS_BRANCH = develop
