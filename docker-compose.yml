@@ -3,9 +3,9 @@ version: '3.7'
 services:
 
   react-template:
-    container_name: react-template
+    container_name: bookbnb-react
     build:
-      context: .
+      context: ./
       dockerfile: Dockerfile
     volumes:
     - '.:/app'
