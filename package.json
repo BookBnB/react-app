@@ -16,8 +16,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "docker-build": "docker build -t bookbnb-react .",
-    "docker-run": "docker run -p 3000:80 bookbnb-react"
+    "docker-build": "docker-compose build",
+    "docker-run": "docker-compose run"
   },
   "eslintConfig": {
     "extends": "react-app"
