@@ -2,17 +2,9 @@ version: '3.7'
 
 services:
 
-  bookbnb-react:
-    container_name: bookbnb-react
-    build:
-      dockerfile: docker/Dockerfile
-    volumes:
-    - '.:/app'
-    - '/app/node_modules'
+  app:
+    image: bookbnb-react
     ports:
-    - 3000:3000
-    working_dir: /app
+      - 3000:3000
     environment:
-    - PORT=3000
-    - CHOKIDAR_USEPOLLING=true
-    stdin_open: true
+      - PORT=3000
