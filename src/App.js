@@ -7,7 +7,7 @@ function App() {
 
   function handleClick() {
 
-      fetch("https://bookbnb-develop.herokuapp.com/v1/users", {
+      fetch(process.env.REACT_APP_BACKEND_URL + '/v1/users', {
           method: 'GET',
           headers: {
               Accept: 'application/json',
