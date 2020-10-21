@@ -5,7 +5,7 @@ services:
   bookbnb-react:
     container_name: bookbnb-react
     build:
-      dockerfile: docker/Dockerfile
+      dockerfile: Dockerfile
     volumes:
     - '.:/app'
     - '/app/node_modules'
