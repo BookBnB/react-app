@@ -2,13 +2,13 @@ dist: xenial
 os: linux
 language: node_js
 node_js:
-- '14'
+  - '14'
 
 services:
-- docker
+  - docker
 
 script:
-- npm run test
+  - npm run test
 
 deploy:
   provider: script

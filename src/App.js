@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
 
 function App() {
+
+  const [response, setResponse] = useState(null);
+
+  function handleClick() {
+
+      fetch(process.env.REACT_APP_BACKEND_URL + '/v1/users', {
+          method: 'GET',
+          headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+          },
+      })
+      .then((res) => res.json())
+      .catch((error) => console.error('Error:', error))
+      .then((r) => {
+          setResponse(r);
+      });
+
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className='login'>
+        <div className='login-button' onClick={handleClick}>
+          Login
+        </div>
+        <div className='response'>
+            {response && response.length > 0 ? response[0].email : null}
+        </div>
+      </div>
   );
+
 }
 
 export default App;
