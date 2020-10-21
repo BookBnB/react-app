@@ -1,7 +1,14 @@
 # react-app
 
-```
-cd bookbnb-backoffice
+## Levantar app
 
-docker-compose up -d --build
 ```
+docker-compose up
+```
+
+
+##Dominios
+
+Producción: https://bookbnb-react-master.herokuapp.com
+
+Develop: https://bookbnb-react-develop.herokuapp.com
