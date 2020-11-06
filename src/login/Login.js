@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './App.css';
+import './login.css';
 
 function Login() {
 
@@ -24,12 +24,15 @@ function Login() {
 
     return (
         <div className='login'>
-            <div className='login-button' onClick={handleClick}>
-                Login
-            </div>
-            <div className='response'>
-                {response && response.length > 0 ? response[0].email : null}
-            </div>
+            <form className="login-form">
+                <label htmlFor="mail">Mail</label>
+                <input id="mail" name="mail" type="text"/>
+
+                <label htmlFor="password">Contraseña</label>
+                <input id="password" name="password" type="text"/>
+
+                <button onClick={handleClick}>Ingresar</button>
+            </form>
         </div>
     );
 

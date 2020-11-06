@@ -3,7 +3,7 @@ import {
     Switch,
     Route,
 } from "react-router-dom";
-import Login from "./Login";
+import Login from "./login/Login";
 
 export const App = () => {
     return (
