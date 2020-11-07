@@ -3,21 +3,23 @@
     margin-top: 200px;
 }
 
-.login .login-form {
-    display: inline-grid;
-    width: 50%;
-}
-
-label {
+.mail, .password {
     margin-bottom: 10px;
     margin-top: 10px;
 }
 
 input {
-    height: 20px;
+    margin-top: 10px;
+    width: 50%;
+    height: 30px;
 }
 
 button {
     margin-top: 50px;
     height: 30px;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
 }
