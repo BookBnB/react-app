@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
+import { useHistory } from 'react-router-dom';
 import './login.css';
 
 function Login() {
 
+    const history = useHistory();
     const [mail, setMail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -41,8 +43,8 @@ function Login() {
     }
 
     function loginSuccesful() {
-        console.alert("Login exitoso");
-        this.props.history.push("/home");
+        alert("Login exitoso");
+        history.push("/home");
     }
 
     function handleMailChange(event) {
