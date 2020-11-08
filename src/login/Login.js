@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom';
+import jwt from 'jwt-decode';
 import './login.css';
 
 function Login() {
@@ -35,15 +36,18 @@ function Login() {
             console.log(response);
             if (response.message) {
                 setErrorMessage(response.message)
-            } else {
-                loginSuccesful();
+            } else if (response.token) {
+                loginSuccesful(response.token);
             }
         });
 
     }
 
-    function loginSuccesful() {
+    function loginSuccesful(token) {
         alert("Login exitoso");
+        const session = jwt(token);
+        console.log(session);
+        localStorage.setItem('expirationDate', session.exp);
         history.push("/home");
     }
 
