@@ -1,10 +1,14 @@
 import React from "react";
+import sessionExpired from "../util/sessionExpired";
+import {Redirect} from "react-router-dom";
 
 function Home() {
     return (
-        <div className='home'>
-            Bienvenido!
-        </div>
+        (sessionExpired()) ?
+            <Redirect to="/login" /> :
+            <div className='home'>
+                Bienvenido!
+            </div>
     );
 }
 
