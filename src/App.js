@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 import Login from "./login/Login";
 import Home from "./home/Home";
+import RedirectComponent from "./RedirectComponent";
 
 export const App = () => {
     return (
@@ -12,6 +13,7 @@ export const App = () => {
             <Switch>
                 <Route exact path="/login" component={Login}/>
                 <Route exact path="/home" component={Home}/>
+                <Route exact path="/" component={RedirectComponent}/>
             </Switch>
         </div>
     );
