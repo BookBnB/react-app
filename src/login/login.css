@@ -1,0 +1,25 @@
+.login {
+    text-align: center;
+    margin-top: 200px;
+}
+
+.mail, .password {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+input {
+    margin-top: 10px;
+    width: 50%;
+    height: 30px;
+}
+
+button {
+    margin-top: 50px;
+    height: 30px;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
