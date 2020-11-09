@@ -72,7 +72,7 @@ function Login() {
             </div>
 
             <button onClick={validateFieldsAndLogin}>Ingresar</button>
-            <div className="error-message">{errorMessage}</div>
+            <div id="error-message" className="error-message">{errorMessage}</div>
         </div>
     );
 
