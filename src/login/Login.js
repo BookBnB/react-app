@@ -79,11 +79,11 @@ function Login() {
 
                 <div className="password">
                     <TextField id="password" label="Contraseña" variant="outlined"
-                               error={passwordInvalid} helperText={passwordInvalid && "La contraseña no puede estar vacío"}
+                               error={passwordInvalid} helperText={passwordInvalid && "La contraseña no puede estar vacía"}
                                type="password" onChange={handlePasswordChange} />
                 </div>
 
-                <Button variant="contained" color="primary" onClick={validateFieldsAndLogin}>Ingresar</Button>
+                <Button id="login-button" variant="contained" color="primary" onClick={validateFieldsAndLogin}>Ingresar</Button>
 
                 <div id="error-message" className="error-message">{errorMessage}</div>
             </div> : <Redirect to="/home" />
