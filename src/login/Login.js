@@ -1,23 +1,30 @@
 import React, {useState} from 'react';
-import { useHistory } from 'react-router-dom';
+import {Redirect, useHistory} from 'react-router-dom';
 import jwt from 'jwt-decode';
 import './login.css';
+import sessionExpired from "../util/sessionExpired";
+import TextField from "@material-ui/core/TextField/TextField";
+import Button from "@material-ui/core/Button/Button";
 
 function Login() {
 
     const history = useHistory();
     const [mail, setMail] = useState('');
     const [password, setPassword] = useState('');
+
+    const [mailInvalid, setMailInvalid] = useState(false);
+    const [passwordInvalid, setPasswordInvalid] = useState(false);
+
     const [errorMessage, setErrorMessage] = useState('');
 
     function validateFieldsAndLogin() {
-        if (mail === '') {
-            setErrorMessage('El mail no puede estar vacío')
-        } else if (password === '') {
-            setErrorMessage('La contraseña no puede estar vacía')
-        } else {
+        setMailInvalid(mail === '');
+        setPasswordInvalid(password === '');
+
+        if (mail !== '' && password !== '') {
             login();
         }
+
     }
 
     function login() {
@@ -52,28 +59,34 @@ function Login() {
     }
 
     function handleMailChange(event) {
+        setMailInvalid(false);
         setMail(event.target.value);
     }
 
     function handlePasswordChange(event) {
+        setPasswordInvalid(false);
         setPassword(event.target.value);
     }
 
     return (
-        <div className='login'>
-            <div className="mail">
-                <div>Mail</div>
-                <input id="mail" name="mail" type="text" onChange={handleMailChange}/>
-            </div>
+        (sessionExpired()) ?
+            <div className='login'>
+                <div className="mail">
+                    <TextField id="mail" label="Mail" variant="outlined"
+                               error={mailInvalid} helperText={mailInvalid && "El mail no puede estar vacío"}
+                               onChange={handleMailChange} />
+                </div>
 
-            <div className="password">
-                <div>Contraseña</div>
-                <input id="password" name="password" type="password" onChange={handlePasswordChange}/>
-            </div>
+                <div className="password">
+                    <TextField id="password" label="Contraseña" variant="outlined"
+                               error={passwordInvalid} helperText={passwordInvalid && "La contraseña no puede estar vacío"}
+                               type="password" onChange={handlePasswordChange} />
+                </div>
 
-            <button onClick={validateFieldsAndLogin}>Ingresar</button>
-            <div id="error-message" className="error-message">{errorMessage}</div>
-        </div>
+                <Button variant="contained" color="primary" onClick={validateFieldsAndLogin}>Ingresar</Button>
+
+                <div id="error-message" className="error-message">{errorMessage}</div>
+            </div> : <Redirect to="/home" />
     );
 
 }
