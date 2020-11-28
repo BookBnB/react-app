@@ -4,8 +4,8 @@ import {
     Route,
 } from "react-router-dom";
 import Login from "./login/Login";
-import Home from "./home/Home";
 import RedirectComponent from "./RedirectComponent";
+import Home from "./home/Home";
 
 export const App = () => {
     return (
