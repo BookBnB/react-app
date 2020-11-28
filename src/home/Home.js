@@ -3,8 +3,11 @@ import sessionExpired from "../util/sessionExpired";
 import {Redirect} from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import * as PropTypes from "prop-types";
-import PhoneIcon from '@material-ui/icons/Phone';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import AddUserIcon from '@material-ui/icons/PersonAdd';
+import UserIcon from '@material-ui/icons/Person';
+import PublicationIcon from '@material-ui/icons/FilterNone';
+import ServiceIcon from '@material-ui/icons/SettingsApplications';
+import MetricIcon from '@material-ui/icons/Equalizer';
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Box from "@material-ui/core/Box";
@@ -63,32 +66,27 @@ export default function Home() {
                         indicatorColor="primary"
                         textColor="primary"
                         aria-label="scrollable force tabs example">
-                        <Tab label="Item One" icon={<PhoneIcon />} {...a11yProps(0)} />
-                        <Tab label="Item Two" icon={<FavoriteIcon />} {...a11yProps(1)} />
-                        <Tab label="Item Three" icon={<PhoneIcon />} {...a11yProps(2)} />
-                        <Tab label="Item Four" icon={<PhoneIcon />} {...a11yProps(3)} />
+                        <Tab label="Registro administradores" icon={<AddUserIcon />} {...a11yProps(0)} />
+                        <Tab label="Usuarios" icon={<UserIcon />} {...a11yProps(1)} />
+                        <Tab label="Publicaciones" icon={<PublicationIcon />} {...a11yProps(2)} />
+                        <Tab label="Servicios" icon={<ServiceIcon />} {...a11yProps(3)} />
+                        <Tab label="Métricas" icon={<MetricIcon />} {...a11yProps(4)} />
                     </Tabs>
                 </AppBar>
                 <TabPanel value={value} index={0}>
-                    Item One
+                    Registro administradores
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    Item Two
+                    Usuarios
                 </TabPanel>
                 <TabPanel value={value} index={2}>
-                    Item Three
+                    Publicaciones
                 </TabPanel>
                 <TabPanel value={value} index={3}>
-                    Item Four
+                    Servicios
                 </TabPanel>
                 <TabPanel value={value} index={4}>
-                    Item Five
-                </TabPanel>
-                <TabPanel value={value} index={5}>
-                    Item Six
-                </TabPanel>
-                <TabPanel value={value} index={6}>
-                    Item Seven
+                    Metricas
                 </TabPanel>
             </div>
     );
