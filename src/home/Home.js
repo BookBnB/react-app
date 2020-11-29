@@ -10,40 +10,15 @@ import ServiceIcon from '@material-ui/icons/SettingsApplications';
 import MetricIcon from '@material-ui/icons/Equalizer';
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-
-function TabPanel(props) {
-
-    const { children, value, index, ...other } = props;
-
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`scrollable-force-tabpanel-${index}`}
-            aria-labelledby={`scrollable-force-tab-${index}`}>
-            {value === index && (
-                <Box p={3}>
-                    <Typography>{children}</Typography>
-                </Box>
-            )}
-        </div>
-    );
-}
+import UsersPage from "../users/UsersPage";
+import TabPanel from "../util/TabPanel";
+import a11yProps from "../util/a11yProps";
 
 Home.propTypes = {
     children: PropTypes.node,
     index: PropTypes.any.isRequired,
     value: PropTypes.any.isRequired,
 };
-
-function a11yProps(index) {
-    return {
-        id: `scrollable-force-tab-${index}`,
-        'aria-controls': `scrollable-force-tabpanel-${index}`,
-    };
-}
 
 export default function Home() {
 
@@ -64,8 +39,7 @@ export default function Home() {
                         variant="scrollable"
                         scrollButtons="on"
                         indicatorColor="primary"
-                        textColor="primary"
-                        aria-label="scrollable force tabs example">
+                        textColor="primary">
                         <Tab label="Registro administradores" icon={<AddUserIcon />} {...a11yProps(0)} />
                         <Tab label="Usuarios" icon={<UserIcon />} {...a11yProps(1)} />
                         <Tab label="Publicaciones" icon={<PublicationIcon />} {...a11yProps(2)} />
@@ -77,7 +51,7 @@ export default function Home() {
                     Registro administradores
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    Usuarios
+                    <UsersPage />
                 </TabPanel>
                 <TabPanel value={value} index={2}>
                     Publicaciones
