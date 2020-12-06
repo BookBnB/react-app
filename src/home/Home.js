@@ -13,6 +13,7 @@ import Tab from "@material-ui/core/Tab";
 import UsersPage from "../users/UsersPage";
 import TabPanel from "../util/TabPanel";
 import a11yProps from "../util/a11yProps";
+import RegisterPage from "../register/RegisterPage";
 
 Home.propTypes = {
     children: PropTypes.node,
@@ -37,7 +38,6 @@ export default function Home() {
                         value={value}
                         onChange={handleChange}
                         variant="scrollable"
-                        scrollButtons="on"
                         indicatorColor="primary"
                         textColor="primary">
                         <Tab label="Registro administradores" icon={<AddUserIcon />} {...a11yProps(0)} />
@@ -48,7 +48,7 @@ export default function Home() {
                     </Tabs>
                 </AppBar>
                 <TabPanel value={value} index={0}>
-                    Registro administradores
+                    <RegisterPage />
                 </TabPanel>
                 <TabPanel value={value} index={1}>
                     <UsersPage />
