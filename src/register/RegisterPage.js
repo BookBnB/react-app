@@ -5,7 +5,7 @@ import TextField from "@material-ui/core/TextField/TextField";
 import Button from "@material-ui/core/Button/Button";
 import './registerPage.css';
 
-export default function RegisterPage() {
+export default function RegisterPage({token}) {
 
     const [name, setName] = useState('')
     const [surname, setSurname] = useState('')
@@ -20,13 +20,24 @@ export default function RegisterPage() {
 
     function register() {
 
-        registerSuccesful()
-        /*fetch(process.env.REACT_APP_BACKEND_URL + '/v1/sesiones', {
+        let registerBody = {name: name, surname: surname, email: mail,
+            role: "admin", password: "bookbnb2020"}
+
+        if (city !== '') {
+            registerBody.city = city;
+        }
+
+        if (phone !== '') {
+            registerBody.phone = phone;
+        }
+
+        fetch(process.env.REACT_APP_BACKEND_URL + '/v1/usuarios', {
             method: 'POST',
-            body: JSON.stringify({email: mail, password: password}),
+            body: JSON.stringify(registerBody),
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
+                'token': token
             },
         })
             .then((res) => res.json())
@@ -34,20 +45,20 @@ export default function RegisterPage() {
             .then((response) => {
                 console.log(response);
                 if (response.message) {
-                    setErrorMessage(response.message)
+                    registerError(response.message)
                 } else if (response.token) {
-                    loginSuccesful(response.token);
+                    registerSuccesful(response.token);
                 }
-            });*/
+            });
 
+    }
+
+    function registerError(message) {
+        alert(message);
     }
 
     function registerSuccesful() {
         alert("Se registro correctamente al administrador " + name + " " + surname);
-        /*const session = jwt(token);
-        console.log(session);
-        localStorage.setItem('expirationDate', session.exp);
-        history.push("/home");*/
     }
 
 
@@ -91,8 +102,8 @@ export default function RegisterPage() {
     }
 
     return (
-        (sessionExpired()) ?
-            <Redirect to="/login" /> :
+        /*(sessionExpired()) ?
+            <Redirect to="/login" /> :*/
             <div className='register-page'>
                 <div className="register-name-surname">
                     <div className="register-name">

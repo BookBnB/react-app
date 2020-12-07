@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
+import { useLocation, Redirect } from 'react-router-dom';
 import sessionExpired from "../util/sessionExpired";
-import {Redirect} from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import * as PropTypes from "prop-types";
 import AddUserIcon from '@material-ui/icons/PersonAdd';
@@ -24,14 +24,15 @@ Home.propTypes = {
 export default function Home() {
 
     const [value, setValue] = useState(0);
+    const location = useLocation();
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
     return (
-        (sessionExpired()) ?
-            <Redirect to="/login" /> :
+        /*(sessionExpired()) ?
+            <Redirect to="/login" /> :*/
             <div className='home'>
                 <AppBar position="static" color="default">
                     <Tabs
@@ -48,7 +49,7 @@ export default function Home() {
                     </Tabs>
                 </AppBar>
                 <TabPanel value={value} index={0}>
-                    <RegisterPage />
+                    <RegisterPage /*token={location.state.token}*//>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
                     <UsersPage />

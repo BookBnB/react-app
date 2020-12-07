@@ -40,7 +40,6 @@ function Login() {
         .then((res) => res.json())
         .catch((error) => console.error('Error:', error))
         .then((response) => {
-            console.log(response);
             if (response.message) {
                 setErrorMessage(response.message)
             } else if (response.token) {
@@ -53,9 +52,13 @@ function Login() {
     function loginSuccesful(token) {
         alert("Login exitoso");
         const session = jwt(token);
-        console.log(session);
         localStorage.setItem('expirationDate', session.exp);
-        history.push("/home");
+        history.push({
+            pathname: "/home",
+            state: {
+                token: token
+            }
+        });
     }
 
     function handleMailChange(event) {
