@@ -31,8 +31,8 @@ export default function Home() {
     };
 
     return (
-        /*(sessionExpired()) ?
-            <Redirect to="/login" /> :*/
+        (sessionExpired()) ?
+            <Redirect to="/login" /> :
             <div className='home'>
                 <AppBar position="static" color="default">
                     <Tabs
@@ -49,7 +49,7 @@ export default function Home() {
                     </Tabs>
                 </AppBar>
                 <TabPanel value={value} index={0}>
-                    <RegisterPage /*token={location.state.token}*//>
+                    <RegisterPage token={location.state.token}/>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
                     <UsersPage />

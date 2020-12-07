@@ -20,6 +20,8 @@ export default function RegisterPage({token}) {
 
     function register() {
 
+        console.log(token);
+
         let registerBody = {name: name, surname: surname, email: mail,
             role: "admin", password: "bookbnb2020"}
 
@@ -102,8 +104,8 @@ export default function RegisterPage({token}) {
     }
 
     return (
-        /*(sessionExpired()) ?
-            <Redirect to="/login" /> :*/
+        (sessionExpired()) ?
+            <Redirect to="/login" /> :
             <div className='register-page'>
                 <div className="register-name-surname">
                     <div className="register-name">
