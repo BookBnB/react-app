@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button/Button";
 import Cookie from "js-cookie";
 import './registerPage.css';
 
-export default function RegisterPage() {
+export default function RegisterPage({expired}) {
 
     const [name, setName] = useState('')
     const [surname, setSurname] = useState('')
@@ -18,6 +18,8 @@ export default function RegisterPage() {
     const [surnameInvalid, setSurnameInvalid] = useState(false)
     const [mailInvalid, setMailInvalid] = useState(false)
     const [phoneInvalid, setPhoneInvalid] = useState(false)
+
+    const sExpired = !expired ? expired : sessionExpired()
 
     function register() {
 
@@ -105,7 +107,7 @@ export default function RegisterPage() {
     }
 
     return (
-        (sessionExpired()) ?
+        (sExpired) ?
             <Redirect to="/login" /> :
             <div className='register-page'>
                 <div className="register-name-surname">

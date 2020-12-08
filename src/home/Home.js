@@ -24,7 +24,6 @@ Home.propTypes = {
 export default function Home() {
 
     const [value, setValue] = useState(0);
-    const location = useLocation();
 
     const handleChange = (event, newValue) => {
         setValue(newValue);

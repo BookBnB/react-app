@@ -1,5 +1,5 @@
 import React from 'react';
-import Login from "./login/Login";
+import Login from "../login/Login";
 import {mount, shallow} from "enzyme";
 
 it("renders login items", () => {
