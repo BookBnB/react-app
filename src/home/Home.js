@@ -49,7 +49,7 @@ export default function Home() {
                     </Tabs>
                 </AppBar>
                 <TabPanel value={value} index={0}>
-                    <RegisterPage token={location.state.token}/>
+                    <RegisterPage />
                 </TabPanel>
                 <TabPanel value={value} index={1}>
                     <UsersPage />

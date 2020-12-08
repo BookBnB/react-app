@@ -3,9 +3,10 @@ import sessionExpired from "../util/sessionExpired";
 import {Redirect} from "react-router-dom";
 import TextField from "@material-ui/core/TextField/TextField";
 import Button from "@material-ui/core/Button/Button";
+import Cookie from "js-cookie";
 import './registerPage.css';
 
-export default function RegisterPage({token}) {
+export default function RegisterPage() {
 
     const [name, setName] = useState('')
     const [surname, setSurname] = useState('')
@@ -20,7 +21,7 @@ export default function RegisterPage({token}) {
 
     function register() {
 
-        console.log(token);
+        console.log(Cookie.get("token"));
 
         let registerBody = {name: name, surname: surname, email: mail,
             role: "admin", password: "bookbnb2020"}
@@ -39,7 +40,7 @@ export default function RegisterPage({token}) {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
-                'token': token
+                'token': Cookie.get("token")
             },
         })
             .then((res) => res.json())
@@ -48,8 +49,8 @@ export default function RegisterPage({token}) {
                 console.log(response);
                 if (response.message) {
                     registerError(response.message)
-                } else if (response.token) {
-                    registerSuccesful(response.token);
+                } else {
+                    registerSuccesful();
                 }
             });
 

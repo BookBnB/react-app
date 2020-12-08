@@ -5,6 +5,7 @@ import './login.css';
 import sessionExpired from "../util/sessionExpired";
 import TextField from "@material-ui/core/TextField/TextField";
 import Button from "@material-ui/core/Button/Button";
+import Cookie from "js-cookie";
 
 function Login() {
 
@@ -53,12 +54,8 @@ function Login() {
         alert("Login exitoso");
         const session = jwt(token);
         localStorage.setItem('expirationDate', session.exp);
-        history.push({
-            pathname: "/home",
-            state: {
-                token: token
-            }
-        });
+        Cookie.set("token", token);
+        history.push("/home");
     }
 
     function handleMailChange(event) {
