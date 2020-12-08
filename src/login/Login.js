@@ -5,6 +5,7 @@ import './login.css';
 import sessionExpired from "../util/sessionExpired";
 import TextField from "@material-ui/core/TextField/TextField";
 import Button from "@material-ui/core/Button/Button";
+import Cookie from "js-cookie";
 
 function Login() {
 
@@ -40,7 +41,6 @@ function Login() {
         .then((res) => res.json())
         .catch((error) => console.error('Error:', error))
         .then((response) => {
-            console.log(response);
             if (response.message) {
                 setErrorMessage(response.message)
             } else if (response.token) {
@@ -53,8 +53,8 @@ function Login() {
     function loginSuccesful(token) {
         alert("Login exitoso");
         const session = jwt(token);
-        console.log(session);
         localStorage.setItem('expirationDate', session.exp);
+        Cookie.set("token", token);
         history.push("/home");
     }
 
