@@ -8,11 +8,20 @@
   ],
   "headers": [
     {
-      "source": "**/*.@(jpg|jpeg|gif|png|html|css|js)",
+      "source": "**/*.@(jpg|jpeg|gif|png|css|js)",
       "headers": [
         {
           "key": "Cache-Control",
           "value": "public, max-age=604800, immutable"
+        }
+      ]
+    },
+    {
+      "source": "*.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "max-age=600"
         }
       ]
     }
