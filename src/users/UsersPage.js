@@ -7,6 +7,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import TabPanel from "../util/TabPanel";
 import a11yProps from "../util/a11yProps";
+import UserList from "./UserList";
 
 UsersPage.propTypes = {
     children: PropTypes.node,
@@ -39,7 +40,7 @@ export default function UsersPage() {
                     </Tabs>
                 </AppBar>
                 <TabPanel value={value} index={0}>
-                    Listar usuarios
+                    <UserList />
                 </TabPanel>
                 <TabPanel value={value} index={1}>
                     Listar transacciones

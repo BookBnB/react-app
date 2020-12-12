@@ -46,7 +46,6 @@ export default function RegisterPage({expired}) {
             .then((res) => res.json())
             .catch((error) => console.error('Error:', error))
             .then((response) => {
-                console.log(response);
                 if (response.message) {
                     registerError(response.message)
                 } else {
