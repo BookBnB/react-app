@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import { useLocation, Redirect } from 'react-router-dom';
+import React, {useState} from "react";
+import { Redirect } from 'react-router-dom';
 import sessionExpired from "../util/sessionExpired";
 import AppBar from "@material-ui/core/AppBar";
 import * as PropTypes from "prop-types";

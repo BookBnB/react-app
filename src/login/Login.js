@@ -44,10 +44,19 @@ function Login() {
             if (response.message) {
                 setErrorMessage(response.message)
             } else if (response.token) {
-                loginSuccesful(response.token);
+                checkRoleAndLogin(response.token);
             }
         });
 
+    }
+
+    function checkRoleAndLogin(token) {
+        const session = jwt(token);
+        if (session.role !== "admin") {
+            setErrorMessage("El usuario ingresado no es un administrador del sistema")
+        } else {
+            loginSuccesful(token);
+        }
     }
 
     function loginSuccesful(token) {

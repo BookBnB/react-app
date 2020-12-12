@@ -23,8 +23,6 @@ export default function RegisterPage({expired}) {
 
     function register() {
 
-        console.log(Cookie.get("token"));
-
         let registerBody = {name: name, surname: surname, email: mail,
             role: "admin", password: "bookbnb2020"}
 
@@ -68,7 +66,7 @@ export default function RegisterPage({expired}) {
 
 
     function validateFieldsAndRegister() {
-        const phoneRegex = RegExp('^(\s*|\d+)$')
+        const phoneRegex = RegExp('(^[0-9]+$|^$)')
         const registerCondition = (name !== '' && surname !== '' && mail !== '' && phoneRegex.test(phone))
 
         setNameInvalid(name === '');
