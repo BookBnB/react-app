@@ -21,9 +21,9 @@ Home.propTypes = {
     value: PropTypes.any,
 };
 
-export default function Home({expired}) {
+export default function Home({expired, initialValue}) {
 
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState(initialValue);
 
     const sExpired = !expired ? expired : sessionExpired();
 

@@ -13,6 +13,8 @@ export const App = () => {
             <Switch>
                 <Route exact path="/login" component={Login}/>
                 <Route exact path="/home" component={Home}/>
+                <Route exact path="/register" component={() => <Home initialValue={0} />} />
+                <Route exact path="/users-list" component={() => <Home initialValue={1} />} />
                 <Route exact path="/" component={RedirectComponent}/>
             </Switch>
         </div>
