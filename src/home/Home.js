@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Redirect } from 'react-router-dom';
+import {Redirect, useHistory} from 'react-router-dom';
 import sessionExpired from "../util/sessionExpired";
 import AppBar from "@material-ui/core/AppBar";
 import * as PropTypes from "prop-types";
@@ -14,6 +14,10 @@ import UsersPage from "../users/UsersPage";
 import TabPanel from "../util/TabPanel";
 import a11yProps from "../util/a11yProps";
 import RegisterPage from "../register/RegisterPage";
+import Button from "@material-ui/core/Button/Button";
+import './home.css';
+import Popup from "../popup/Popup";
+import Cookie from "js-cookie";
 
 Home.propTypes = {
     children: PropTypes.node,
@@ -23,17 +27,43 @@ Home.propTypes = {
 
 export default function Home({expired, initialValue}) {
 
+    const history = useHistory();
     const [value, setValue] = useState(initialValue);
+    const [showPopup, setShowPopup] = useState(false);
 
-    const sExpired = !expired ? expired : sessionExpired();
+    const closePopup = () => {
+        setShowPopup(false);
+    };
+
+    const closeSession = () => {
+        setShowPopup(false);
+        localStorage.removeItem("expirationDate");
+        Cookie.remove('token');
+        history.push("/login");
+    };
+
+    const popupOptions = [{
+            "text": "No",
+            "clickHandler": closePopup
+        },
+        {
+            "text": "Sí",
+            "clickHandler": closeSession
+        }]
+
+    const sExpired = (expired !== undefined) ? expired : sessionExpired();
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
+    const showCloseSessionPopup = () => {
+        setShowPopup(true);
+    };
+
     return (
         (sExpired) ?
-            <Redirect to="/login" /> :
+            <Redirect to="/login"/> :
             <div className='home'>
                 <AppBar position="static" color="default">
                     <Tabs
@@ -64,6 +94,8 @@ export default function Home({expired, initialValue}) {
                 <TabPanel value={value} index={4}>
                     Metricas
                 </TabPanel>
+                <Button id="close-session-button" variant="contained" color="primary" onClick={showCloseSessionPopup}>Cerrar sesión</Button>
+                {showPopup ? <Popup text="Estás seguro que deseas cerrar sesión?" options={popupOptions}/> : null}
             </div>
     );
 }
