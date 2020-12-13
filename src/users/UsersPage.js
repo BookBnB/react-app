@@ -7,25 +7,26 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import TabPanel from "../util/TabPanel";
 import a11yProps from "../util/a11yProps";
+import UserList from "./UserList";
 
 UsersPage.propTypes = {
     children: PropTypes.node,
-    index: PropTypes.any.isRequired,
-    value: PropTypes.any.isRequired,
+    index: PropTypes.any,
+    value: PropTypes.any,
 };
 
-export default function UsersPage() {
+export default function UsersPage({expired}) {
 
     const [value, setValue] = useState(0);
+
+    const sExpired = !expired ? expired : sessionExpired()
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
-    //En la lista de usuarios, al hacer click en uno en particular se deberia ver su perfil
-    //En la pantalla del perfil deberia haber un boton para bloquear al usuario y otro para cargar saldo en su billetera
     return (
-        (sessionExpired()) ?
+        (sExpired) ?
             <Redirect to="/login" /> :
             <div className='users-page'>
                 <AppBar position="static" color="default">
@@ -39,7 +40,7 @@ export default function UsersPage() {
                     </Tabs>
                 </AppBar>
                 <TabPanel value={value} index={0}>
-                    Listar usuarios
+                    <UserList />
                 </TabPanel>
                 <TabPanel value={value} index={1}>
                     Listar transacciones
