@@ -17,20 +17,22 @@ import RegisterPage from "../register/RegisterPage";
 
 Home.propTypes = {
     children: PropTypes.node,
-    index: PropTypes.any.isRequired,
-    value: PropTypes.any.isRequired,
+    index: PropTypes.any,
+    value: PropTypes.any,
 };
 
-export default function Home() {
+export default function Home({expired}) {
 
     const [value, setValue] = useState(0);
+
+    const sExpired = !expired ? expired : sessionExpired();
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
     return (
-        (sessionExpired()) ?
+        (sExpired) ?
             <Redirect to="/login" /> :
             <div className='home'>
                 <AppBar position="static" color="default">
