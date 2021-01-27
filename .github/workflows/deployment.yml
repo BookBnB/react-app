@@ -1,0 +1,37 @@
+name: build
+on: [ push, pull_request ]
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    container: node:14.15.3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+      - name: Cache node dependencies
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-dependencies
+      - name: Install dependencies
+        run: npm install
+      - name: Run test suite
+        run: npm run test:coverage
+      - name: Send coverage report
+        run: node_modules/.bin/codecov -f coverage/*.json
+
+  deploy:
+    runs-on: ubuntu-20.04
+    needs: test
+    if: contains('
+      refs/heads/master
+      refs/heads/develop
+      ', github.ref)
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+      - name: Deploy app
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: |
+          export BRANCH=${GITHUB_REF##*/}
+          docker/heroku_push.sh
