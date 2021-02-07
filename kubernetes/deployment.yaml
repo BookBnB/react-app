@@ -19,7 +19,7 @@ spec:
         image: ghcr.io/bookbnb/react-app:latest
         ports:
         - name: frontend-port
-          containerPort: 80
+          containerPort: 5000
           protocol: TCP
         resources:
           limits:
@@ -28,3 +28,6 @@ spec:
           requests:
             memory: "100Mi"
             cpu: "100m"
+        envFrom:
+          - configMapRef:
+              name: frontend-config
