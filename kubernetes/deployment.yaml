@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bookbnb-frontend
+  labels:
+    app: bookbnb-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bookbnb-frontend
+  template:
+    metadata:
+      labels:
+        app: bookbnb-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: ghcr.io/bookbnb/react-app:latest
+        ports:
+        - name: frontend-port
+          containerPort: 80
+          protocol: TCP
+        resources:
+          limits:
+            memory: "200Mi"
+          requests:
+            memory: "100Mi"
