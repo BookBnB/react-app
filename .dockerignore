@@ -1,5 +1,11 @@
+.github
+coverage
 docker
+heroku
+kubernetes
 node_modules
+public
+src
 .dockerignore
 .env
 gitignore

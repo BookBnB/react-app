@@ -3,17 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.11.0",
-    "jwt-decode": "^3.1.1",
-    "react": "^16.13.1",
-    "react-cookie": "^4.0.3",
-    "react-dom": "^16.13.1",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3",
-    "serve": "^11.3.2",
-    "@material-ui/icons": "^4.9.1",
-    "prop-types": "^15.7.2",
-    "js-cookie": "^2.2.1"
+    "express": "^4.17.1",
+    "prom-client": "^12.0.0",
+    "prometheus-api-metrics": "^3.1.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -22,10 +14,20 @@
     "codecov": "^3.8.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
-    "react-test-renderer": "^17.0.1"
+    "react-test-renderer": "^17.0.1",
+    "@material-ui/core": "^4.11.0",
+    "jwt-decode": "^3.1.1",
+    "react": "^16.13.1",
+    "react-cookie": "^4.0.3",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.3",
+    "@material-ui/icons": "^4.9.1",
+    "prop-types": "^15.7.2",
+    "js-cookie": "^2.2.1"
   },
   "scripts": {
-    "start": "serve build",
+    "start": "node index.js",
     "start:dev": "react-scripts start -p $PORT",
     "build": "react-scripts build",
     "test": "react-scripts test",
