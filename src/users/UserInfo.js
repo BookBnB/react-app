@@ -90,7 +90,7 @@ export default function UserInfo({user}) {
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description">
                 <div className="block-user-modal">
-                    Estás seguro que deseas bloquear al usuario {user.name} {user.surname}?
+                    Estás seguro que deseas bloquear al {mapRole(user.role)} {user.name} {user.surname}?
                     <div className='confirmation-buttons'>
                         <Button className="block-user-no-button" variant="contained" onClick={closeBlockUserConfirmationModal}>No</Button>
                         <Button className="block-user-yes-button" variant="contained" onClick={closeBlockUserConfirmationModal}>Sí</Button>

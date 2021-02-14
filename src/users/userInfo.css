@@ -30,7 +30,7 @@
 
 /*MODALS*/
 
-.user-profile-modal {
+.user-profile-modal, .block-user-modal {
     margin: 25%;
     padding: 30px;
     background-color: white;
@@ -48,4 +48,18 @@
 
 .user-contact-data-modal p {
     text-decoration: underline;
+}
+
+.confirmation-buttons {
+    margin-top: 15px;
+}
+
+.block-user-modal .confirmation-buttons .block-user-no-button {
+    width: 40%;
+    margin-right: 20px;
+}
+
+.block-user-modal .confirmation-buttons .block-user-yes-button {
+    width: 40%;
+    margin-left: 20px;
 }
