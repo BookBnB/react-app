@@ -27,3 +27,25 @@
     padding-left: 15px;
     border-left: 1px solid #EEEEEE;
 }
+
+/*MODALS*/
+
+.user-profile-modal {
+    margin: 25%;
+    padding: 30px;
+    background-color: white;
+    text-align: center;
+}
+
+.user-name-modal {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.user-contact-data-modal {
+    margin-top: 30px;
+}
+
+.user-contact-data-modal p {
+    text-decoration: underline;
+}

@@ -41,7 +41,7 @@ export default function UserInfo({user}) {
     }
 
     function mapRole(role) {
-        const roles = [['guest', 'Usuario'], ['host', 'Anfitrión'], ['admin', 'Administrador']]
+        const roles = [['guest', 'Huésped'], ['host', 'Anfitrión'], ['admin', 'Administrador']]
         let rolesMap = new Map(roles);
 
         return rolesMap.get(role);
@@ -61,21 +61,40 @@ export default function UserInfo({user}) {
                 onClose={closeProfileModal}
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description">
-                {user.name} {user.surname}
-                {user.role}
-                {user.email}
-                {user.city}
-                {user.phone}
+                <div className="user-profile-modal">
+                    <div className="user-name-modal">
+                        {user.name} {user.surname}
+                    </div>
+                    <div className="user-role-modal">
+                        {mapRole(user.role)}
+                    </div>
+                    <div className="user-contact-data-modal">
+                        <p>Datos de contacto</p>
+                        <div className="user-email-modal">
+                            Mail: {user.email}
+                        </div>
+                        {user.city ?
+                            <div className="user-city-modal">
+                                Ciudad: {user.city}
+                            </div> : null }
+                        {user.phone ?
+                        <div className="user-phone-modal">
+                            Teléfono: {user.phone}
+                        </div> : null}
+                    </div>
+                </div>
             </Modal>
             <Modal
                 open={showBlockUserConfirmationModal}
                 onClose={closeBlockUserConfirmationModal}
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description">
-                Estás seguro que deseas bloquear al usuario {user.name} {user.surname}?
-                <div className='confirmation-buttons'>
-                    <Button className="block-user-no-button" variant="contained" onClick={closeBlockUserConfirmationModal}>No</Button>
-                    <Button className="block-user-yes-button" variant="contained" onClick={closeBlockUserConfirmationModal}>Sí</Button>
+                <div className="block-user-modal">
+                    Estás seguro que deseas bloquear al usuario {user.name} {user.surname}?
+                    <div className='confirmation-buttons'>
+                        <Button className="block-user-no-button" variant="contained" onClick={closeBlockUserConfirmationModal}>No</Button>
+                        <Button className="block-user-yes-button" variant="contained" onClick={closeBlockUserConfirmationModal}>Sí</Button>
+                    </div>
                 </div>
             </Modal>
             <Modal
@@ -83,10 +102,12 @@ export default function UserInfo({user}) {
                 onClose={closeChargeModal}
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description">
-                Ingrese monto a cargar a {user.name} {user.surname}
-                <TextField id="amount" variant="outlined"
-                           onChange={handleAmountChange} />
-                <Button className="charge-button" variant="contained" onClick={closeChargeModal}>Cargar saldo</Button>
+                <div className="charge-amount-modal">
+                    Ingrese monto a cargar a {user.name} {user.surname}
+                    <TextField id="amount" variant="outlined"
+                               onChange={handleAmountChange} />
+                    <Button className="charge-button" variant="contained" onClick={closeChargeModal}>Cargar saldo</Button>
+                </div>
             </Modal>
         </div>
     )
