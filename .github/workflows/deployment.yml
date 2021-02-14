@@ -27,7 +27,6 @@ jobs:
 
   package:
     runs-on: ubuntu-20.04
-    container: node:14.15.3
     needs: build
     if: contains('
       refs/heads/master
@@ -39,6 +38,10 @@ jobs:
         continue-on-error: true # Ignore the failure of a step and avoid terminating the job.
       - name: Checkout code
         uses: actions/checkout@v1
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
       - name: Build image
         env:
           BACKEND_URL: https://bookbnb-core-service-seblaz.cloud.okteto.net
