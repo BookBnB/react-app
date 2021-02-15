@@ -1,0 +1,12 @@
+.publication-info {
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-bottom: 1px solid #EEEEEE;
+    height: auto;
+    width: 100%;
+}
+
+.title {
+    font-size: 25px;
+    font-weight: 500;
+}
