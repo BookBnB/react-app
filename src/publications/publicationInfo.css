@@ -6,7 +6,23 @@
     width: 100%;
 }
 
-.title {
-    font-size: 25px;
-    font-weight: 500;
+/*MODAL*/
+
+.publication-reservations-modal {
+    margin: 25%;
+    padding: 30px;
+    background-color: white;
+    text-align: center;
+}
+
+.reservation-info {
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-bottom: 1px solid #EEEEEE;
+    height: auto;
+    width: 100%;
+}
+
+.period {
+    margin-top: 10px;
 }

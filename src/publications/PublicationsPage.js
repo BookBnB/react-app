@@ -37,7 +37,7 @@ export default function PublicationsPage({expired}) {
         (sExpired) ?
             <Redirect to="/login" /> :
             (!publications) ? null :
-                <div className='user-list'>
+                <div className='publication-list'>
                     {publications.map(publication => {
                         return (
                             <PublicationInfo publication={publication} />
