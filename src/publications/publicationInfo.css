@@ -6,6 +6,10 @@
     width: 100%;
 }
 
+.publication-info .title {
+    font-weight: 600;
+}
+
 /*MODAL*/
 
 .publication-reservations-modal {
