@@ -1,0 +1,37 @@
+.publication-info {
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-bottom: 1px solid #EEEEEE;
+    height: auto;
+    width: 100%;
+}
+
+.publication-info .title {
+    font-weight: 600;
+}
+
+/*MODAL*/
+
+.publication-reservations-modal {
+    padding: 30px;
+    background-color: white;
+    text-align: center;
+}
+
+.reservation-info, .transaction-info {
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-bottom: 1px solid #EEEEEE;
+    height: auto;
+    width: 100%;
+}
+
+.period {
+    margin-top: 10px;
+}
+
+.transactions-modal {
+    padding: 30px;
+    background-color: white;
+    text-align: center;
+}

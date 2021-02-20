@@ -10,14 +10,16 @@ import ServiceIcon from '@material-ui/icons/SettingsApplications';
 import MetricIcon from '@material-ui/icons/Equalizer';
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import UsersPage from "../users/UsersPage";
 import TabPanel from "../util/TabPanel";
 import a11yProps from "../util/a11yProps";
-import RegisterPage from "../register/RegisterPage";
 import Button from "@material-ui/core/Button/Button";
 import './home.css';
 import Popup from "../popup/Popup";
 import Cookie from "js-cookie";
+
+import UsersPage from "../users/UsersPage";
+import RegisterPage from "../register/RegisterPage";
+import PublicationsPage from "../publications/PublicationsPage";
 
 Home.propTypes = {
     children: PropTypes.node,
@@ -86,7 +88,7 @@ export default function Home({expired, initialValue}) {
                     <UsersPage />
                 </TabPanel>
                 <TabPanel value={value} index={2}>
-                    Publicaciones
+                    <PublicationsPage />
                 </TabPanel>
                 <TabPanel value={value} index={3}>
                     Servicios
