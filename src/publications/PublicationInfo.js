@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import './publicationInfo.css';
 import Link from "@material-ui/core/Link";
 import Modal from "@material-ui/core/Modal";
-import ReservationsList from "./ReservationsList";
+import ReservationsList from "./reservations/ReservationsList";
 import Cookie from "js-cookie";
 
 export default function PublicationInfo({publication}) {
