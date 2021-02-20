@@ -31,12 +31,16 @@ export default function ReservationsList({publicationId}) {
     return (
 
         (!reservations) ? null :
-            <div className='reservation-list'>
-                {reservations.map(reservation => {
-                    return (
-                        <ReservationInfo reservation={reservation} />
-                    )
-                })}
-            </div>
+            (reservations.length === 0) ?
+                <div className="no-reservations-message">
+                    No se encontraron reservas para la publicación seleccionada
+                </div> :
+                <div className='reservation-list'>
+                    {reservations.map(reservation => {
+                        return (
+                            <ReservationInfo reservation={reservation} />
+                        )
+                    })}
+                </div>
     );
 }
