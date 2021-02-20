@@ -3,14 +3,32 @@ import './userInfo.css';
 import Link from "@material-ui/core/Link";
 import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField/TextField";
+import Cookie from "js-cookie";
 
 export default function UserInfo({user}) {
 
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [showBlockUserConfirmationModal, setShowBlockUserConfirmationModal] = useState(false);
     const [showChargeModal, setShowChargeModal] = useState(false);
-    const [amountToCharge, setAmountToCharge] = useState(0);
+    const [userWallet, setUserWallet] = useState(null);
+
+    function getUserWallet() {
+
+        fetch(process.env.REACT_APP_BACKEND_URL + '/v1/billeteras/' + user.id, {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': Cookie.get("token")
+            },
+        })
+            .then((res) => res.json())
+            .catch((error) => console.error('Error:', error))
+            .then((response) => {
+                setUserWallet(response);
+            });
+
+    }
 
     const openProfileModal = () => {
       setShowProfileModal(true);
@@ -21,6 +39,9 @@ export default function UserInfo({user}) {
     };
 
     const openChargeModal = () => {
+        if (!userWallet) {
+            getUserWallet();
+        }
         setShowChargeModal(true);
     };
 
@@ -35,10 +56,6 @@ export default function UserInfo({user}) {
     const closeChargeModal = () => {
         setShowChargeModal(false);
     };
-
-    function handleAmountChange(event) {
-        setAmountToCharge(event.target.value);
-    }
 
     function mapRole(role) {
         const roles = [['guest', 'Huésped'], ['host', 'Anfitrión'], ['admin', 'Administrador']]
@@ -103,10 +120,10 @@ export default function UserInfo({user}) {
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description">
                 <div className="charge-amount-modal">
-                    Ingrese monto a cargar a {user.name} {user.surname}
-                    <TextField id="amount" variant="outlined"
-                               onChange={handleAmountChange} />
-                    <Button className="charge-button" variant="contained" onClick={closeChargeModal}>Cargar saldo</Button>
+                    La dirección de la billetera del usuario es:
+                    <div className="user-wallet">
+                        {userWallet ? userWallet.direccion : ""}
+                    </div>
                 </div>
             </Modal>
         </div>

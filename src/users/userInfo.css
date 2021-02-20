@@ -30,7 +30,7 @@
 
 /*MODALS*/
 
-.user-profile-modal, .block-user-modal {
+.user-profile-modal, .block-user-modal, .charge-amount-modal {
     margin: 25%;
     padding: 30px;
     background-color: white;

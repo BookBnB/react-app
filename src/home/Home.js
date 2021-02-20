@@ -17,7 +17,7 @@ import './home.css';
 import Popup from "../popup/Popup";
 import Cookie from "js-cookie";
 
-import UsersPage from "../users/UsersPage";
+import UsersList from "../users/UserList";
 import RegisterPage from "../register/RegisterPage";
 import PublicationsPage from "../publications/PublicationsPage";
 
@@ -85,7 +85,7 @@ export default function Home({expired, initialValue}) {
                     <RegisterPage />
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    <UsersPage />
+                    <UsersList />
                 </TabPanel>
                 <TabPanel value={value} index={2}>
                     <PublicationsPage />
