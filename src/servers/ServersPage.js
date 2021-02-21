@@ -35,11 +35,11 @@ export default function ServersPage({expired}) {
     };
 
     function addServer() {
-        let registerBody = {tipo: serverType, nombre: serverName}
+        let serverBody = {tipo: serverType, nombre: serverName}
 
         fetch(process.env.REACT_APP_BACKEND_URL + '/v1/servidores', {
             method: 'POST',
-            body: JSON.stringify(registerBody),
+            body: JSON.stringify(serverBody),
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
