@@ -34,6 +34,46 @@ export default function ServersPage({expired}) {
         setServerName(event.target.value);
     };
 
+    function addServer() {
+        let registerBody = {tipo: serverType, nombre: serverName}
+
+        fetch(process.env.REACT_APP_BACKEND_URL + '/v1/servidores', {
+            method: 'POST',
+            body: JSON.stringify(registerBody),
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': Cookie.get("token")
+            },
+        })
+            .then((res) => res.json())
+            .catch((error) => console.error('Error:', error))
+            .then((response) => {
+                if (response.message) {
+                    addServerError(response.message)
+                } else {
+                    addServerSuccess();
+                }
+            });
+    }
+
+    function addServerError(message) {
+        alert(message);
+    }
+
+    function addServerSuccess() {
+        alert("El servidor fue creado satisfactoriamente");
+        closeAddServerModal();
+    }
+
+    function validateAndAddServer() {
+        if (serverType === '' || serverName === '') {
+            alert('El tipo y el nombre son campos obligatorios');
+        } else {
+            addServer();
+        }
+    }
+
     function getServersList() {
 
         fetch(process.env.REACT_APP_BACKEND_URL + '/v1/servidores', {
@@ -89,8 +129,8 @@ export default function ServersPage({expired}) {
                                         id="new-server-type"
                                         value={serverType}
                                         onChange={handleTypeChange}>
-                                        <MenuItem value={0}>Pagos</MenuItem>
-                                        <MenuItem value={1}>Usuarios</MenuItem>
+                                        <MenuItem value={"Pagos"}>Pagos</MenuItem>
+                                        <MenuItem value={"Usuarios"}>Usuarios</MenuItem>
                                     </Select>
                                 </FormControl>
                                 <div className="new-server-name">
@@ -98,7 +138,7 @@ export default function ServersPage({expired}) {
                                                onChange={handleNameChange} />
                                 </div>
                             </div>
-                            <Button className="accept-button" variant="contained" onClick={closeAddServerModal}>Agregar servidor</Button>
+                            <Button className="accept-button" variant="contained" onClick={validateAndAddServer}>Agregar servidor</Button>
                         </div>
                     </Modal>
                 </div>
