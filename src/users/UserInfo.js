@@ -97,13 +97,18 @@ export default function UserInfo({user}) {
         return rolesMap.get(role);
     }
 
+    function blockUserLink() {
+        return user.blocked === true ? null :
+            <Link className='option-block' onClick={openBlockUserConfirmationModal}>Bloquear usuario</Link>
+    }
+
     return (
         <div className='user-info'>
             <div className='name'>{user.name} {user.surname}</div>
             <div className='role'>{mapRole(user.role)}</div>
             <div className='options'>
                 <Link className='option-profile' onClick={openProfileModal}>Ver perfil</Link>
-                <Link className='option-block' onClick={openBlockUserConfirmationModal}>Bloquear usuario</Link>
+                {blockUserLink()}
                 <Link className='option-money' onClick={openChargeModal}>Cargar saldo</Link>
             </div>
             <Modal
