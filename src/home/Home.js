@@ -6,7 +6,7 @@ import * as PropTypes from "prop-types";
 import AddUserIcon from '@material-ui/icons/PersonAdd';
 import UserIcon from '@material-ui/icons/Person';
 import PublicationIcon from '@material-ui/icons/FilterNone';
-import ServiceIcon from '@material-ui/icons/SettingsApplications';
+import ServerIcon from '@material-ui/icons/SettingsApplications';
 import MetricIcon from '@material-ui/icons/Equalizer';
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -20,6 +20,7 @@ import Cookie from "js-cookie";
 import UsersList from "../users/UserList";
 import RegisterPage from "../register/RegisterPage";
 import PublicationsPage from "../publications/PublicationsPage";
+import ServersPage from "../servers/ServersPage";
 
 Home.propTypes = {
     children: PropTypes.node,
@@ -77,7 +78,7 @@ export default function Home({expired, initialValue}) {
                         <Tab label="Registro administradores" icon={<AddUserIcon />} {...a11yProps(0)} />
                         <Tab label="Usuarios" icon={<UserIcon />} {...a11yProps(1)} />
                         <Tab label="Publicaciones" icon={<PublicationIcon />} {...a11yProps(2)} />
-                        <Tab label="Servicios" icon={<ServiceIcon />} {...a11yProps(3)} />
+                        <Tab label="Servidores" icon={<ServerIcon />} {...a11yProps(3)} />
                         <Tab label="Métricas" icon={<MetricIcon />} {...a11yProps(4)} />
                     </Tabs>
                 </AppBar>
@@ -91,7 +92,7 @@ export default function Home({expired, initialValue}) {
                     <PublicationsPage />
                 </TabPanel>
                 <TabPanel value={value} index={3}>
-                    Servicios
+                    <ServersPage />
                 </TabPanel>
                 <TabPanel value={value} index={4}>
                     Metricas

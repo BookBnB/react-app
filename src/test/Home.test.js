@@ -7,6 +7,6 @@ it("renders home tabs", () => {
     expect(wrapper.find("#scrollable-force-tab-0").prop("label")).toEqual("Registro administradores");
     expect(wrapper.find("#scrollable-force-tab-1").prop("label")).toEqual("Usuarios");
     expect(wrapper.find("#scrollable-force-tab-2").prop("label")).toEqual("Publicaciones");
-    expect(wrapper.find("#scrollable-force-tab-3").prop("label")).toEqual("Servicios");
+    expect(wrapper.find("#scrollable-force-tab-3").prop("label")).toEqual("Servidores");
     expect(wrapper.find("#scrollable-force-tab-4").prop("label")).toEqual("Métricas");
 });
