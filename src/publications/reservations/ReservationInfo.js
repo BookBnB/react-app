@@ -1,5 +1,5 @@
 import Link from "@material-ui/core/Link";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import TransactionsList from "../transactions/TransactionsList";
 import Modal from "@material-ui/core/Modal";
 import '../publicationInfo.css';
