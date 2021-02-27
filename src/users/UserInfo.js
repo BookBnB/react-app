@@ -4,7 +4,6 @@ import Link from "@material-ui/core/Link";
 import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
 import Cookie from "js-cookie";
-import {func} from "prop-types";
 
 export default function UserInfo({user}) {
 
@@ -13,8 +12,8 @@ export default function UserInfo({user}) {
     const [showChargeModal, setShowChargeModal] = useState(false);
     const [userWallet, setUserWallet] = useState(null);
 
-    function blockUser() {
-        let userBlockedBody = {blocked: true}
+    function handleUserBlock(blocked) {
+        let userBlockedBody = {blocked: blocked}
 
         fetch(process.env.REACT_APP_BACKEND_URL + '/v1/usuarios/' + user.id + '/bloqueo', {
             method: 'PUT',
@@ -31,7 +30,7 @@ export default function UserInfo({user}) {
                 if (response.message) {
                     blockUserError(response.message)
                 } else {
-                    blockUserSuccess();
+                    blockUserSuccess(blocked);
                 }
             });
     }
@@ -40,8 +39,9 @@ export default function UserInfo({user}) {
         alert(message);
     }
 
-    function blockUserSuccess() {
-        alert("Se bloqueó correctamente al usuario " + user.name + " " + user.surname);
+    function blockUserSuccess(blocked) {
+        let action = blocked ? "bloqueó" : "desbloqueó";
+        alert("Se " + action + " correctamente al usuario " + user.name + " " + user.surname);
         closeBlockUserConfirmationModal();
     }
 
@@ -98,7 +98,8 @@ export default function UserInfo({user}) {
     }
 
     function blockUserLink() {
-        return user.blocked === true ? null :
+        return user.blocked === true ?
+            <Link className='option-block' onClick={() => handleUserBlock(false)}>Desbloquear usuario</Link> :
             <Link className='option-block' onClick={openBlockUserConfirmationModal}>Bloquear usuario</Link>
     }
 
@@ -148,7 +149,7 @@ export default function UserInfo({user}) {
                     Estás seguro que deseas bloquear al {mapRole(user.role)} {user.name} {user.surname}?
                     <div className='confirmation-buttons'>
                         <Button className="block-user-no-button" variant="contained" onClick={closeBlockUserConfirmationModal}>No</Button>
-                        <Button className="block-user-yes-button" variant="contained" onClick={blockUser}>Sí</Button>
+                        <Button className="block-user-yes-button" variant="contained" onClick={() => handleUserBlock(true)}>Sí</Button>
                     </div>
                 </div>
             </Modal>
