@@ -21,6 +21,7 @@ import UsersList from "../users/UserList";
 import RegisterPage from "../register/RegisterPage";
 import PublicationsPage from "../publications/PublicationsPage";
 import ServersPage from "../servers/ServersPage";
+import MetricsPage from "../metrics/MetricsPage";
 
 Home.propTypes = {
     children: PropTypes.node,
@@ -95,7 +96,7 @@ export default function Home({expired, initialValue}) {
                     <ServersPage />
                 </TabPanel>
                 <TabPanel value={value} index={4}>
-                    Metricas
+                    <MetricsPage />
                 </TabPanel>
                 <Button id="close-session-button" variant="contained" color="primary" onClick={showCloseSessionPopup}>Cerrar sesión</Button>
                 {showPopup ? <Popup text="Estás seguro que deseas cerrar sesión?" options={popupOptions}/> : null}
