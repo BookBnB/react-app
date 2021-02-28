@@ -62,8 +62,56 @@ export default function MetricsPage({expired}) {
             .then((res) => res.json())
             .catch((error) => console.error('Error:', error))
             .then((response) => {
-                setCurrentMetric(response);
+                mapAndSortData(response.datos);
             });
+    }
+
+    Date.prototype.addDays = function(days) {
+        let date = new Date(this.valueOf());
+        date.setDate(date.getDate() + days);
+        return date;
+    }
+
+    function getValueFromData(data, key) {
+        for (let i=0; i < data.length; i++) {
+            if (data[i].clave === key) {
+                return data[i].valor;
+            }
+        }
+        return 0;
+    }
+
+    function formatDate(date) {
+        let d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+
+        return [year, month, day].join('-');
+    }
+
+    function fillData(data) {
+        if (data.length === 0) return data;
+        let dates = [];
+        let firstDate = new Date((metricDateFrom !== '') ? metricDateFrom : data[0].clave).addDays(1);
+        let lastDate = new Date((metricDateTo !== '') ? metricDateTo : data[data.length - 1].clave).addDays(1);
+        while (firstDate <= lastDate) {
+            dates.push({clave: formatDate(new Date (firstDate).toDateString()), valor: getValueFromData(data, formatDate(firstDate.toDateString()))});
+            firstDate = firstDate.addDays(1);
+        }
+        return dates;
+    }
+
+    function mapAndSortData(data) {
+        let newData = data.map(d => ({ clave: d.clave.split('T')[0], valor: d.valor }));
+        newData.sort((a,b) => (a.clave > b.clave) ? 1 : ((b.clave > a.clave) ? -1 : 0));
+        let dataWithAllDates = fillData(newData);
+        setCurrentMetric(dataWithAllDates);
     }
 
     function showMetric() {
@@ -73,7 +121,7 @@ export default function MetricsPage({expired}) {
         switch (metricType) {
             case "publicaciones":
                 metric =
-                    <LineChart width={1000} height={400} data={currentMetric.datos}
+                    <LineChart width={1000} height={400} data={currentMetric}
                                margin={{ top: 30, right: 30, left: 20, bottom: 5 }}>
                         <Line dataKey="valor"
                               stroke="#8884d8"
@@ -86,7 +134,7 @@ export default function MetricsPage({expired}) {
                 break;
             case "reservas":
                 metric =
-                    <LineChart width={1000} height={400} data={currentMetric.datos}
+                    <LineChart width={1000} height={400} data={currentMetric}
                                margin={{ top: 30, right: 30, left: 20, bottom: 5 }}>
                         <Line dataKey="valor"
                               stroke="#8884d8"
@@ -99,7 +147,7 @@ export default function MetricsPage({expired}) {
                 break;
             case "reservasActivas":
                 metric =
-                    <LineChart width={1000} height={400} data={currentMetric.datos}
+                    <LineChart width={1000} height={400} data={currentMetric}
                                margin={{ top: 30, right: 30, left: 20, bottom: 5 }}>
                         <Line dataKey="valor"
                               stroke="#8884d8"
