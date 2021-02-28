@@ -3,7 +3,7 @@ import {Redirect} from "react-router-dom";
 import sessionExpired from "../util/sessionExpired";
 import FormControl from "@material-ui/core/FormControl";
 import Cookie from "js-cookie";
-import {LineChart, Line, CartesianGrid, XAxis, YAxis} from 'recharts';
+import {LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip} from 'recharts';
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -72,20 +72,42 @@ export default function MetricsPage({expired}) {
         let metric;
         switch (metricType) {
             case "publicaciones":
-                console.log(currentMetric.datos);
                 metric =
-                    <LineChart width={400} height={400} data={currentMetric.datos}>
-                        <Line type="monotone" dataKey="uv" stroke="#8884d8" />
+                    <LineChart width={1000} height={400} data={currentMetric.datos}
+                               margin={{ top: 30, right: 30, left: 20, bottom: 5 }}>
+                        <Line dataKey="valor"
+                              stroke="#8884d8"
+                              strokeWidth={3}/>
                         <CartesianGrid stroke="#ccc" />
                         <XAxis dataKey="clave" />
-                        <YAxis dataKey="valor"/>
+                        <YAxis />
+                        <Tooltip />
                     </LineChart>
                 break;
             case "reservas":
-                console.log(currentMetric.datos);
                 metric =
-                    <LineChart width={400} height={400} data={currentMetric.datos}>
-                        <Line type="monotone" dataKey="uv" stroke="#8884d8" />
+                    <LineChart width={1000} height={400} data={currentMetric.datos}
+                               margin={{ top: 30, right: 30, left: 20, bottom: 5 }}>
+                        <Line dataKey="valor"
+                              stroke="#8884d8"
+                              strokeWidth={3}/>
+                        <CartesianGrid stroke="#ccc" />
+                        <XAxis dataKey="clave" />
+                        <YAxis />
+                        <Tooltip />
+                    </LineChart>
+                break;
+            case "reservasActivas":
+                metric =
+                    <LineChart width={1000} height={400} data={currentMetric.datos}
+                               margin={{ top: 30, right: 30, left: 20, bottom: 5 }}>
+                        <Line dataKey="valor"
+                              stroke="#8884d8"
+                              strokeWidth={3}/>
+                        <CartesianGrid stroke="#ccc" />
+                        <XAxis dataKey="clave" />
+                        <YAxis />
+                        <Tooltip />
                     </LineChart>
                 break;
             default:
@@ -108,6 +130,7 @@ export default function MetricsPage({expired}) {
                         onChange={handleTypeChange}>
                         <MenuItem value={"publicaciones"}>Cantidad de publicaciones nuevas por día</MenuItem>
                         <MenuItem value={"reservas"}>Cantidad de reservas creadas por día</MenuItem>
+                        <MenuItem value={"reservasActivas"}>Cantidad de reservas activas por día</MenuItem>
                     </Select>
                 </FormControl>
                 <div className="input-params">
@@ -121,7 +144,9 @@ export default function MetricsPage({expired}) {
                     </div>
                 </div>
                 <Button className="accept-button" variant="contained" onClick={showCurrentMetric}>Ver resultados</Button>
-                {showMetric()}
+                <div className="plot">
+                    {showMetric()}
+                </div>
             </div>
     );
 }
