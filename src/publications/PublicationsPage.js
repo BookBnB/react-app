@@ -16,7 +16,7 @@ export default function PublicationsPage({expired}) {
 
     function getPublicationsList() {
 
-        fetch(process.env.REACT_APP_BACKEND_URL + '/v1/publicaciones?coordenadas%5Blatitud%5D=0&coordenadas%5Blongitud%5D=0&radio=5000000000', {
+        fetch(process.env.REACT_APP_BACKEND_URL + '/v1/publicaciones?coordenadas%5Blatitud%5D=0&coordenadas%5Blongitud%5D=0&radio=5000000000&incluirBloqueadas=true', {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
