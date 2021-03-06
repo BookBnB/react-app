@@ -6,12 +6,14 @@ import {
 import Login from "./login/Login";
 import RedirectComponent from "./RedirectComponent";
 import Home from "./home/Home";
+import ChangePassword from "./changepassword/ChangePassword";
 
 export const App = () => {
     return (
         <div>
             <Switch>
                 <Route exact path="/login" component={Login}/>
+                <Route exact path="/change-password" component={ChangePassword}/>
                 <Route exact path="/home" component={Home}/>
                 <Route exact path="/register" component={() => <Home initialValue={0} />} />
                 <Route exact path="/users-list" component={() => <Home initialValue={1} />} />
