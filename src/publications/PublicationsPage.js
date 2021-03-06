@@ -8,8 +8,8 @@ export default function PublicationsPage({expired}) {
 
     const [publications, setPublications] = useState(null);
 
-    const sExpired = !expired ? expired : sessionExpired()
-
+    const sExpired = !expired ? expired : sessionExpired();
+    
     useEffect(() => {
         setPublications(getPublicationsList());
     }, [setPublications]);
