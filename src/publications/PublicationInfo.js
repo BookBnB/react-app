@@ -5,6 +5,7 @@ import Modal from "@material-ui/core/Modal";
 import ReservationsList from "./reservations/ReservationsList";
 import Cookie from "js-cookie";
 import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
 
 export default function PublicationInfo({publication}) {
 
@@ -99,15 +100,16 @@ export default function PublicationInfo({publication}) {
                 <Link className='option-reservations' onClick={openReservationsModal}>Ver reservas asociadas</Link>
                 {blockPublicationLink()}
             </div>
-            <Modal
+            <Dialog
                 open={showReservationsModal}
                 onClose={closeReservationsModal}
+                scroll='body'
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description">
                 <div className="publication-reservations-modal">
                     <ReservationsList publicationId={publication.id}/>
                 </div>
-            </Modal>
+            </Dialog>
             <Modal
                 open={showBlockPublicationConfirmationModal}
                 onClose={closeBlockPublicationConfirmationModal}
