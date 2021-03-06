@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import TransactionsList from "../transactions/TransactionsList";
 import Modal from "@material-ui/core/Modal";
 import '../publicationInfo.css';
+import Dialog from "@material-ui/core/Dialog";
 
 export default function ReservationInfo({reservation}) {
 
@@ -23,15 +24,16 @@ export default function ReservationInfo({reservation}) {
             <div className='options'>
                 <Link className='option-transactions' onClick={openTransactionsModal}>Ver transacciones</Link>
             </div>
-            <Modal
+            <Dialog
                 open={showTransactionsModal}
                 onClose={closeTransactionsModal}
+                scroll='body'
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description">
                 <div className="transactions-modal">
                     <TransactionsList reservationId={reservation.id}/>
                 </div>
-            </Modal>
+            </Dialog>
         </div>
     )
 
