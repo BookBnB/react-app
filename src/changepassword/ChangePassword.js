@@ -30,7 +30,7 @@ function ChangePassword() {
         let jwt = queryParams.get("jwt");
         let session = jwtDecode(jwt);
 
-        fetch('https://bookbnb-develop.herokuapp.com' + '/v1/usuarios/' + session.email + '/contrasena', {
+        fetch(process.env.REACT_APP_BACKEND_URL + '/v1/usuarios/' + session.email + '/contrasena', {
             method: 'PUT',
             body: JSON.stringify({password: password}),
             headers: {
