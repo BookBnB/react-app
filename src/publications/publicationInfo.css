@@ -12,7 +12,14 @@
 
 /*MODAL*/
 
-.publication-reservations-modal, .block-publication-modal {
+.block-publication-modal {
+    margin: 25%;
+    padding: 30px;
+    background-color: white;
+    text-align: center;
+}
+
+.transactions-modal, .publication-reservations-modal {
     padding: 30px;
     background-color: white;
     text-align: center;
@@ -28,12 +35,6 @@
 
 .period {
     margin-top: 10px;
-}
-
-.transactions-modal {
-    padding: 30px;
-    background-color: white;
-    text-align: center;
 }
 
 .confirmation-buttons {
