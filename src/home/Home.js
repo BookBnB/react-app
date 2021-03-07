@@ -14,7 +14,6 @@ import TabPanel from "../util/TabPanel";
 import a11yProps from "../util/a11yProps";
 import Button from "@material-ui/core/Button/Button";
 import './home.css';
-import Popup from "../popup/Popup";
 import Cookie from "js-cookie";
 
 import UsersList from "../users/UserList";
@@ -22,6 +21,7 @@ import RegisterPage from "../register/RegisterPage";
 import PublicationsPage from "../publications/PublicationsPage";
 import ServersPage from "../servers/ServersPage";
 import MetricsPage from "../metrics/MetricsPage";
+import Modal from "@material-ui/core/Modal";
 
 Home.propTypes = {
     children: PropTypes.node,
@@ -33,27 +33,18 @@ export default function Home({expired, initialValue}) {
 
     const history = useHistory();
     const [value, setValue] = useState(initialValue);
-    const [showPopup, setShowPopup] = useState(false);
+    const [showCloseSessionConfirmationModal, setShowCloseSessionConfirmationModal] = useState(false);
 
-    const closePopup = () => {
-        setShowPopup(false);
+    const closeCloseSessionConfirmationModal = () => {
+        setShowCloseSessionConfirmationModal(false);
     };
 
     const closeSession = () => {
-        setShowPopup(false);
+        setShowCloseSessionConfirmationModal(false);
         localStorage.removeItem("expirationDate");
         Cookie.remove('token');
         history.push("/login");
     };
-
-    const popupOptions = [{
-            "text": "No",
-            "clickHandler": closePopup
-        },
-        {
-            "text": "Sí",
-            "clickHandler": closeSession
-        }]
 
     const sExpired = (expired !== undefined) ? expired : sessionExpired();
 
@@ -61,8 +52,8 @@ export default function Home({expired, initialValue}) {
         setValue(newValue);
     };
 
-    const showCloseSessionPopup = () => {
-        setShowPopup(true);
+    const openCloseSessionConfirmationModal = () => {
+        setShowCloseSessionConfirmationModal(true);
     };
 
     return (
@@ -98,8 +89,20 @@ export default function Home({expired, initialValue}) {
                 <TabPanel value={value} index={4}>
                     <MetricsPage />
                 </TabPanel>
-                <Button id="close-session-button" variant="contained" color="primary" onClick={showCloseSessionPopup}>Cerrar sesión</Button>
-                {showPopup ? <Popup text="Estás seguro que deseas cerrar sesión?" options={popupOptions}/> : null}
+                <Button id="close-session-button" variant="contained" color="primary" onClick={openCloseSessionConfirmationModal}>Cerrar sesión</Button>
+                <Modal
+                    open={showCloseSessionConfirmationModal}
+                    onClose={closeCloseSessionConfirmationModal}
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description">
+                    <div className="close-session-modal">
+                        Estás seguro que deseas cerrar sesión?
+                        <div className='confirmation-buttons'>
+                            <Button className="no-button" variant="contained" onClick={closeCloseSessionConfirmationModal}>No</Button>
+                            <Button className="yes-button" variant="contained" onClick={closeSession}>Sí</Button>
+                        </div>
+                    </div>
+                </Modal>
             </div>
     );
 }
