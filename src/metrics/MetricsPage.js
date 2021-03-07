@@ -50,20 +50,25 @@ export default function MetricsPage({expired}) {
 
     function showCurrentMetric() {
 
-        console.log(metricType);
-        fetch(process.env.REACT_APP_BACKEND_URL + '/v1/reportes/' + metricType + mapParams(), {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': Cookie.get("token")
-            },
-        })
-            .then((res) => res.json())
-            .catch((error) => console.error('Error:', error))
-            .then((response) => {
-                mapAndSortData(response.datos);
-            });
+        if (metricType === '') {
+            alert("El tipo de métrica es un campo obligatorio")
+        } else if (metricType === "reservasActivas" && (metricDateFrom === '' || metricDateTo === '')) {
+            alert("Los campos correspondientes a fecha de inicio y fecha de fin son obligatorios para esta métrica")
+        } else {
+            fetch(process.env.REACT_APP_BACKEND_URL + '/v1/reportes/' + metricType + mapParams(), {
+                method: 'GET',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': Cookie.get("token")
+                },
+            })
+                .then((res) => res.json())
+                .catch((error) => console.error('Error:', error))
+                .then((response) => {
+                    mapAndSortData(response.datos);
+                });
+        }
     }
 
     Date.prototype.addDays = function(days) {
@@ -184,11 +189,17 @@ export default function MetricsPage({expired}) {
                 <div className="input-params">
                     <div className="date-from-input">
                         <TextField id="date-from" label="Fecha de inicio" variant="outlined"
-                                   onChange={handleDateFromChange} />
+                                   onChange={handleDateFromChange} type="date"
+                                   InputLabelProps={{
+                                       shrink: true,
+                                   }}/>
                     </div>
                     <div className="date-to-input">
                         <TextField id="date-to" label="Fecha de fin" variant="outlined"
-                                   onChange={handleDateToChange} />
+                                   onChange={handleDateToChange} type="date"
+                                   InputLabelProps={{
+                                       shrink: true,
+                                   }}/>
                     </div>
                 </div>
                 <Button className="accept-button" variant="contained" onClick={showCurrentMetric}>Ver resultados</Button>
