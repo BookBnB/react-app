@@ -11,13 +11,31 @@
     font-weight: 500;
 }
 
+.server-info .option-block-server {
+    cursor: pointer;
+}
+
 /*MODAL*/
 
-.add-server-modal {
+.add-server-modal, .block-server-modal {
     margin: 25%;
     padding: 30px;
     background-color: white;
     text-align: center;
+}
+
+.confirmation-buttons {
+    margin-top: 15px;
+}
+
+.block-server-modal .confirmation-buttons .no-button {
+    width: 40%;
+    margin-right: 20px;
+}
+
+.block-server-modal .confirmation-buttons .yes-button {
+    width: 40%;
+    margin-left: 20px;
 }
 
 .add-server-modal .add-server-modal-title {
