@@ -1,38 +1,26 @@
-import React, {useState} from 'react';
-import './App.css';
+import React from "react";
+import {
+    Switch,
+    Route,
+} from "react-router-dom";
+import Login from "./login/Login";
+import RedirectComponent from "./RedirectComponent";
+import Home from "./home/Home";
+import ChangePassword from "./changepassword/ChangePassword";
 
-function App() {
-
-  const [response, setResponse] = useState(null);
-
-  function handleClick() {
-
-      fetch(process.env.REACT_APP_BACKEND_URL + '/v1/users', {
-          method: 'GET',
-          headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json',
-          },
-      })
-      .then((res) => res.json())
-      .catch((error) => console.error('Error:', error))
-      .then((r) => {
-          setResponse(r);
-      });
-
-  }
-
-  return (
-      <div className='login'>
-        <div className='login-button' onClick={handleClick}>
-          Login
+export const App = () => {
+    return (
+        <div>
+            <Switch>
+                <Route exact path="/login" component={Login}/>
+                <Route exact path="/change-password" component={ChangePassword}/>
+                <Route exact path="/home" component={Home}/>
+                <Route exact path="/register" component={() => <Home initialValue={0} />} />
+                <Route exact path="/users-list" component={() => <Home initialValue={1} />} />
+                <Route exact path="/publications-list" component={() => <Home initialValue={2} />} />
+                <Route exact path="/servers-list" component={() => <Home initialValue={3} />} />
+                <Route exact path="/" component={RedirectComponent}/>
+            </Switch>
         </div>
-        <div className='response'>
-            {response && response.length > 0 ? response[0].email : null}
-        </div>
-      </div>
-  );
-
-}
-
-export default App;
+    );
+};

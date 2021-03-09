@@ -1,0 +1,52 @@
+.publication-info {
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-bottom: 1px solid #EEEEEE;
+    height: auto;
+    width: 100%;
+}
+
+.publication-info .title {
+    font-weight: 600;
+}
+
+/*MODAL*/
+
+.block-publication-modal {
+    margin: 25%;
+    padding: 30px;
+    background-color: white;
+    text-align: center;
+}
+
+.transactions-modal, .publication-reservations-modal {
+    padding: 30px;
+    background-color: white;
+    text-align: center;
+}
+
+.reservation-info, .transaction-info {
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-bottom: 1px solid #EEEEEE;
+    height: auto;
+    width: 100%;
+}
+
+.period {
+    margin-top: 10px;
+}
+
+.confirmation-buttons {
+    margin-top: 15px;
+}
+
+.block-publication-modal .confirmation-buttons .block-publication-no-button {
+    width: 40%;
+    margin-right: 20px;
+}
+
+.block-publication-modal .confirmation-buttons .block-publication-yes-button {
+    width: 40%;
+    margin-left: 20px;
+}

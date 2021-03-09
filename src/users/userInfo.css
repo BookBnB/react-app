@@ -1,0 +1,65 @@
+.user-info {
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-bottom: 1px solid #EEEEEE;
+    height: auto;
+    width: 100%;
+}
+
+.user-info .name {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.options {
+    margin-top: 10px;
+}
+
+.option-profile, .option-block, .option-money {
+    cursor: pointer;
+}
+
+.option-profile, .option-block{
+    padding-right: 15px;
+}
+
+.option-block, .option-money{
+    padding-left: 15px;
+    border-left: 1px solid #EEEEEE;
+}
+
+/*MODALS*/
+
+.user-profile-modal, .block-user-modal, .charge-amount-modal {
+    margin: 25%;
+    padding: 30px;
+    background-color: white;
+    text-align: center;
+}
+
+.user-name-modal {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.user-contact-data-modal {
+    margin-top: 30px;
+}
+
+.user-contact-data-modal p {
+    text-decoration: underline;
+}
+
+.confirmation-buttons {
+    margin-top: 15px;
+}
+
+.block-user-modal .confirmation-buttons .block-user-no-button {
+    width: 40%;
+    margin-right: 20px;
+}
+
+.block-user-modal .confirmation-buttons .block-user-yes-button {
+    width: 40%;
+    margin-left: 20px;
+}

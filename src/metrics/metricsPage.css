@@ -1,0 +1,13 @@
+.metric-type {
+    width: 50%;
+}
+
+.metrics .input-params {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+}
+
+.metrics .input-params .date-from-input {
+    margin-right: 20px;
+}

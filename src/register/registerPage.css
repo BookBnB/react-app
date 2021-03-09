@@ -1,0 +1,50 @@
+.register-name-surname {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.register-mail {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.register-name {
+    margin-right: 15px;
+    width: 50%;
+}
+
+.register-name .MuiFormControl-root {
+    width: 100%;
+}
+
+.register-surname {
+    margin-right: 15px;
+    width: 50%;
+}
+
+.register-surname .MuiFormControl-root {
+    width: 100%;
+}
+
+.register-city-phone {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.register-city {
+    margin-right: 15px;
+    width: 50%;
+}
+
+.register-city .MuiFormControl-root {
+    width: 100%;
+}
+
+.register-phone {
+    margin-right: 15px;
+    width: 50%;
+}
+
+.register-phone .MuiFormControl-root {
+    width: 100%;
+}

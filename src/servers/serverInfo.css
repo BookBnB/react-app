@@ -1,0 +1,42 @@
+.server-info {
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-bottom: 1px solid #EEEEEE;
+    height: auto;
+    width: 100%;
+}
+
+.server-info .name {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+/*MODAL*/
+
+.add-server-modal {
+    margin: 25%;
+    padding: 30px;
+    background-color: white;
+    text-align: center;
+}
+
+.add-server-modal .add-server-modal-title {
+    font-size: 30px;
+}
+
+.add-server-inputs {
+    display: flex;
+    margin: 20px;
+}
+
+.new-server-type, .new-server-name {
+    width: 50%;
+}
+
+.new-server-name {
+    margin-left: 10px;
+}
+
+.new-server-type {
+    margin-right: 10px;
+}
